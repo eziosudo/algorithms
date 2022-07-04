@@ -141,3 +141,5 @@ cython_debug/
 *.iml
 *.xml
 /.idea
+
+*.md
