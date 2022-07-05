@@ -52,13 +52,15 @@ class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         dict = {}
         for i in range(len(nums)):
-            dict[nums[i]] = i
-        for i in range(len(nums)):
             n = target - nums[i]
             if n in dict and dict[n] != i:
-                return [i, dict[n]]
+                return [dict[n], i]
+            else:
+                dict[nums[i]] = i
 
 # leetcode submit region end(Prohibit modification and deletion)
 
 e = Solution()
 print(e.twoSum([2,3,4], 6))
+print(e.twoSum([3,3], 6))
+print(e.twoSum([1,4,5,6], 2))
