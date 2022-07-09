@@ -78,7 +78,6 @@ class Solution:
             if i + 1 < len(nums) and nums[i] != nums[i + 1]:
                 nums[index] = nums[i + 1]
                 index += 1
-            i += 1
         return index
 
     # leetcode submit region end(Prohibit modification and deletion)
