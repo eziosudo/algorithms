@@ -69,14 +69,40 @@ class Solution:
         else:
             return (nums[length // 2 - 1] + nums[length // 2]) / 2
 
+
 class Solution2:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
+        length = len(nums1) + len(nums2)
+        ans = length // 2
+        A, B = nums1, nums2
+        if len(nums1) > len(nums2):
+            A, B = nums2, nums1
+        i = len(A) // 2
 
-        return None
+        while True:
+            Aleft = A[i-1] if i > 0 else float("-infinity")
+            Aright = A[i] if i < len(A) else float("infinity")
+            j = ans - i
+            Bleft = B[j-1] if j > 0 else float("-infinity")
+            Bright = B[j] if j < len(B) else float("infinity")
+
+            if Aleft <= Bright and Bleft <= Aright:
+                if length % 2:
+                    return min(Aright, Bright)
+                else:
+                    return (max(Aleft, Bleft) + min(Aright, Bright)) / 2
+            elif Aleft > Bright:
+                i -= 1
+                j += 1
+            else:
+                i += 1
+                j -= 1
+
 
 # leetcode submit region end(Prohibit modification and deletion)
 
-s = Solution()
+s = Solution2()
+print(s.findMedianSortedArrays([1, 3, 5], [2, 4]))
 print(s.findMedianSortedArrays([1, 3], [2]))
 print(s.findMedianSortedArrays([1, 3], [2, 4]))
 print(s.findMedianSortedArrays([1, 2], [3, 4]))
